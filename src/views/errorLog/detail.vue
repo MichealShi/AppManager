@@ -103,10 +103,13 @@
 import {
   queryExceptionById,
   updateCrashStatus
-} from '../../api/osExceptionApi'
+} from '../../mock/osExceptionApi'
 export default {
   filters: {
     formatUpdateTime: function(value) {
+      if (value.indexOf('-') !== -1) {
+        return value
+      }
       const date = new Date(value)
       let fmt = 'yyyy-MM-dd hh:mm:ss'
       const o = {
@@ -157,8 +160,11 @@ export default {
         systemVersion: '--',
         mobile: '--',
         cpu: '--',
+        osName: '--',
+        eventtime: '--',
         status: '--',
-        exceptionStr: 'something wrong'
+        exceptionStr: 'something wrong',
+        exceptionType: '--'
       }],
       totalList: []
     }
@@ -176,6 +182,7 @@ export default {
           this.list = []
           this.totalCount = response.data.totalCount
           this.totalList = response.data.list
+          console.log('========' + this.totalList[0])
           this.list.push(this.formatStr(this.totalList[0]))
         } else {
           this.$message.error(response.data.msg)

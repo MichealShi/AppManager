@@ -60,16 +60,16 @@ export const constantRouterMap = [
     hidden: true
   },
   {
-    path: '',
+    path: '/',
     component: Layout,
     redirect: 'dashboard',
     children: [
       {
         path: 'dashboard',
         component: () => import('../views/dashboard/index'),
-        name: '首页',
+        name: 'dashboard',
         meta: {
-          title: '首页',
+          title: 'dashboard',
           icon: 'dashboard',
           noCache: true,
           keepAlive: false

@@ -23,7 +23,7 @@
               v-model="radio"
               name="apkType"
               style="margin-top: 10px;margin-bottom: 10px;">
-              <el-radio :label="1">PC</el-radio>
+              <el-radio :label="1">官网</el-radio>
               <el-radio :label="5">推广</el-radio>
             </el-radio-group>
             <a href="javascript:" class="file">选择文件并上传
@@ -86,7 +86,7 @@ import {
   fetchList,
   offlineVersion,
   uploadAPK
-} from '../../api/appManageApi'
+} from '../../mock/appManageApi'
 
 export default {
   /* eslint-disable */
@@ -135,7 +135,7 @@ export default {
         this.$message.error('请输入版本号!')
         return false
       }
-      if (this.authCodeStr !== 'dulituan') {
+      if (this.authCodeStr !== 'nau') {
         this.$message.error('请输入正确口令!')
         return false
       }

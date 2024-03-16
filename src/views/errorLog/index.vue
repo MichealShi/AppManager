@@ -95,7 +95,7 @@
       style="width: 100%;padding-top: 15px;"
       stripe>
       <el-table-column
-        label="exceptionType"
+        label="Type"
         width="130px">
         <template slot-scope="scope"><span style="color: grey; font-size: smaller; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ scope.row.exceptionType }}</span></template>
       </el-table-column>
@@ -113,7 +113,7 @@
       <el-table-column
         label="最近发生"
         width="150px">
-        <template slot-scope="scope"><span style="font-size: 13px">{{ scope.row.update_time | formatUpdateTime }}</span>
+        <template slot-scope="scope"><span style="font-size: 13px">{{ scope.row.update_time }}</span>
         </template>
       </el-table-column>
       <el-table-column label="异常信息">
@@ -153,7 +153,7 @@ import {
   fetchFilterList,
   searchException,
   updateCrashStatus
-} from '../../api/osExceptionApi'
+} from '../../mock/osExceptionApi'
 
 export default {
   filters: {
@@ -191,6 +191,7 @@ export default {
       system: '-1',
       version: '-1',
       status: 0,
+      statusStr: '未修复',
       us: '-1',
       startTime: '-1',
       endTime: '-1',
@@ -314,7 +315,7 @@ export default {
     },
     fetchFilter() {
       this.loading = true
-      fetchFilterList(this.pageIndex, this.pageSize, this.system, this.version, this.status, this.us, this.recentDay).then(response => {
+      fetchFilterList(this.pageIndex, this.pageSize, this.system, this.version, this.status, this.statusStr, this.us, this.recentDay).then(response => {
         console.log('osException data = ' + response.data)
         this.loading = false
         if (response.data.code === 200) {
@@ -417,9 +418,30 @@ export default {
       this.version = value
       this.fetchFilter()
     },
+    getStatusValueStr(value) {
+      this.statusStr = '未修复'
+      switch (value) {
+        case -1:
+          this.statusStr = '未修复'
+          break
+        case 0:
+          this.statusStr = '未修复'
+          break
+        case 2:
+          this.statusStr = '处理中'
+          break
+        case 3:
+          this.statusStr = '已忽略'
+          break
+        case 1:
+          this.statusStr = '已修复'
+          break
+      }
+    },
     getStatusValue(value) {
       this.pageIndex = 0
       this.status = value
+      this.getStatusValueStr(value)
       this.fetchFilter()
     },
     getUsValue(value) {

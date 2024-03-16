@@ -36,7 +36,7 @@
           <el-table-column
             label="时间排序"
             width="100px">
-            <template slot-scope="scope"><span style="color: limegreen; font-size: smaller;">{{ scope.row.l | formatDateTime }}</span></template>
+            <template slot-scope="scope"><span style="color: limegreen; font-size: smaller;">{{ scope.row.l }}</span></template>
           </el-table-column>
           <el-table-column
             label="日志类型"
@@ -71,7 +71,7 @@
 <script>
 import {
   filterLogAnalyse
-} from '../../api/logAnalyseApi'
+} from '../../mock/logAnalyseApi'
 
 import {
   dateFtt

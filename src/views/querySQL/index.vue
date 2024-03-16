@@ -33,7 +33,7 @@
 <script>
 import {
   fetchList
-} from '../../api/querySQLApi'
+} from '../../mock/querySQLApi'
 
 export default {
   data() {

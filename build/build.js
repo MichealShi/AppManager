@@ -60,7 +60,7 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
 
             app.listen(port, function () {
                 console.log(
-                    chalk.green(`> Listening at  http://localhost:${port}${basePath}`)
+                    chalk.green(`> Listening at  ${host}${basePath}`)
                 )
             })
         }

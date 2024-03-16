@@ -6,10 +6,12 @@
       <el-col :span="24">
         <el-input
           id="searchInput"
+          v-model="searchStr"
           placeholder="请输入唯一设备号"
           size="small"
           clearable
           autocomplete="on"
+          maxlength="20"
           style="width: 360px; margin-left: 10px"/>
         <el-button
           icon="el-icon-search"
@@ -20,6 +22,7 @@
     </el-row>
     <el-table
       :data="list"
+      empty-text="暂无数据"
       style="width: 100%;padding-top: 15px;"
       stripe>
       <el-table-column
@@ -34,12 +37,12 @@
       <el-table-column
         label="上传时间"
         width="170px">
-        <template slot-scope="scope"><span style="font-size: 13px">{{ scope.row.upload_time | formatDateTime }}</span></template>
+        <template slot-scope="scope"><span style="font-size: 13px">{{ scope.row.upload_time }}</span></template>
       </el-table-column>
       <el-table-column
         label="创建时间"
         width="170px">
-        <template slot-scope="scope"><span style="font-size: 13px">{{ scope.row.create_time | formatDateTime }}</span></template>
+        <template slot-scope="scope"><span style="font-size: 13px">{{ scope.row.create_time }}</span></template>
       </el-table-column>
       <el-table-column
         label="查看"
@@ -66,7 +69,7 @@
 <script>
 import {
   searchLogByPid
-} from '../../api/logAnalyseApi'
+} from '../../mock/logAnalyseApi'
 
 export default {
   filters: {
@@ -85,6 +88,7 @@ export default {
   },
   data() {
     return {
+      searchStr: '',
       loading: false,
       list: null,
       totalCount: 0,

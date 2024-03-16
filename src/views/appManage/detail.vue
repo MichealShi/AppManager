@@ -37,7 +37,7 @@
       </div>
     </el-dialog>
     <div style="display: flex;">
-      <h5>{{ tableData[0].appVersion }}版本详情</h5>
+      <h5>{{ appVersion }}版本详情</h5>
     </div>
     <el-table
       :data="tableData">
@@ -86,7 +86,7 @@
 import {
   fetchDetail,
   uploadAPK
-} from '../../api/appManageApi'
+} from '../../mock/appManageApi'
 
 export default {
   filters: {
@@ -107,7 +107,18 @@ export default {
     return {
       resetApkDialogFormVisible: false,
       formLabelWidth: '100px',
-      tableData: null,
+      appVersion: this.$route.query.appVersion,
+      tableData: [
+        {
+          appVersion: '1.0.0',
+          id: 1,
+          channel: 99,
+          fileSize: 123098129,
+          nowTime: '2024-01-01',
+          lastTime: '2024-01-01',
+          fileName: 'release.apk'
+        }
+      ],
       resetForm: {
         us: 'PC',
         secret: ''
@@ -144,7 +155,7 @@ export default {
       this.apkResource = event.target.files[0]
     },
     resetApk() {
-      if (this.resetForm.secret !== 'dulituan') {
+      if (this.resetForm.secret !== 'nau') {
         this.$message.error('请输入正确口令')
         return
       }

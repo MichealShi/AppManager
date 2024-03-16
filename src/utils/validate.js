@@ -9,13 +9,13 @@ export function isValidateUsername(str) {
 
 export function isValidatePassword(username, password) {
   if (username === 'admin') {
-    return password === '000000'
+    return password === '111111'
   }
   if (username === 'editor') {
-    return password === '000000'
+    return password === '111111'
   }
   if (username === 'root') {
-    return password === '000000'
+    return password === '111111'
   }
   return false
 }

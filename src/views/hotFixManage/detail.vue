@@ -46,7 +46,7 @@
       <el-col :span="7" style="padding: 10px">
         <div class="grid-content bg-purple">
           <span class="title">上传时间：</span>
-          <span class="content">{{ createTime | formatDate }}</span>
+          <span class="content">{{ createTime }}</span>
         </div>
       </el-col>
       <el-col :span="7" style="padding: 10px;">
@@ -86,7 +86,7 @@
     <el-row :gutter="20" align="right" style="margin-top: 20px; margin-right: 2px">
       <el-col :span="24" align="right">
         <el-button v-if="sendTestVisible" type="primary" round @click.native="handleSendClick('确定要发布测试此补丁文件吗, 可能会出现不可预知的BUG，请确认已测试通过', '6')">发布测试</el-button>
-        <el-button v-if="sendAllVisible" type="success" round @click.native="handleSendClick('确定要全量发布此补丁文件吗, 可能会出现不可预知的BUG，请确认已测试通过', '1')">全量发布</el-button>
+        <el-button v-if="sendAllVisible" type="success" round @click.native="handleSendClick('确定要全量发布此补丁文件吗, 可能会出现不可预知的BUG，请确认已测试通过', '1')">正式发布</el-button>
 
         <el-button v-if="stopVisible" type="danger" round @click.native="handleStopClick('此操作将停止发布该补丁, 是否继续?', '4')">停止发布</el-button>
         <el-button v-if="deleteVisible" type="danger" round @click.native="handleStopClick('此操作将删除并停止发布该补丁, 是否继续?', '0')">删除补丁</el-button>
@@ -100,7 +100,7 @@
 import {
   fetchHotFixDetail,
   updateHotFixStatus
-} from '../../api/hotFixApi'
+} from '../../mock/hotFixApi'
 
 export default {
   filters: {
@@ -122,7 +122,7 @@ export default {
       appVersion: '--',
       patchDesc: '--',
       patchMd5: '--',
-      createTime: '--',
+      createTime: '2024-01-01',
       openTime: '--',
       status: '',
       statusStr: '--',
@@ -153,7 +153,7 @@ export default {
           this.appHash = response.data.appHash
           this.appVersion = response.data.appVersion
           this.patchDesc = response.data.patchDesc
-          this.patchMd5 = response.data.patchMd5
+          this.patchMd5 = this.md5
           this.createTime = response.data.createTime
           this.openTime = response.data.openTime
           this.successCount = response.data.successCount

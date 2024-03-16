@@ -96,7 +96,7 @@ import {
   addAppVersion,
   uploadHotFixAPK,
   queryHotFixVersions
-} from '../../api/hotFixApi'
+} from '../../mock/hotFixApi'
 
 export default {
   /* eslint-disable */
@@ -167,17 +167,18 @@ export default {
       })
       queryHotFixVersions().then(response => {
         if (response.data.code === 200) {
-          this.versionList = response.data.list
-          let lst = []
-          this.versionList.forEach(function(row, index) {
-            const m = {}
-            m.label = row.version_name
-            m.value = row.appHash
-            lst[index] = m
-          })
-          this.versionOptions = lst
-          this.versionDefaultValue = this.versionOptions[0].appHash
-          this.patchForm.appHash = this.versionOptions[0].appHash
+          // this.versionList = response.data.list
+          // let lst = []
+          // this.versionList.forEach(function(row, index) {
+          //   const m = {}
+          //   m.label = row.version_name
+          //   m.value = row.appHash
+          //   lst[index] = m
+          // })
+          // this.versionOptions = lst
+          // this.versionDefaultValue = this.versionOptions[0].appHash
+
+          // this.patchForm.appHash = this.versionOptions[0].appHash
         }
       })
     },

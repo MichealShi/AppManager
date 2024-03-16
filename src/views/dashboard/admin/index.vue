@@ -100,7 +100,7 @@ import {
   // getNetErrorAddressList,
   getNetErrorDailyList,
   getExceptionDailyList
-} from '../../../api/dashboardApi'
+} from '../../../mock/dashboardApi'
 
 const ruleOptions = [
   {
@@ -217,11 +217,9 @@ export default {
       options[1] = 'count'
       let index = 2
       versionList.forEach(function(row) {
-        if (index < 5) {
-          options[index] = row.appVersion
-          console.log('appversion = ' + row.appVersion)
-          index = index + 1
-        }
+        options[index] = row.appVersion
+        console.log('appversion = ' + row.appVersion)
+        index = index + 1
       })
       this.exceptionChartData.columns = options
     },

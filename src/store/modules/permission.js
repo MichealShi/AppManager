@@ -59,6 +59,7 @@ const permission = {
         } = data
         let accessedRouters
         if (roles.indexOf('admin') >= 0) {
+          console.log('role is admin === ')
           accessedRouters = asyncRouterMap
         } else {
           accessedRouters = filterAsyncRouter(asyncRouterMap, roles)

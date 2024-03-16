@@ -26,6 +26,22 @@ const userMap = {
   }
 }
 
+export function loginByUsername(username, password) {
+  return userMap[username]
+}
+
+export function logout() {
+  return 'success'
+}
+
+export function getUserInfo(token) {
+  if (userMap[token]) {
+    return userMap[token]
+  } else {
+    return false
+  }
+}
+
 export default {
   loginByUsername: config => {
     const {
